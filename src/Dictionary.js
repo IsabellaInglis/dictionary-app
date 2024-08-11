@@ -3,11 +3,44 @@ import { IconButton, Input, TextField } from "@mui/material";
 import React, { useState } from "react";
 import "./Dictionary.css";
 import axios from "axios";
+import KeywordData from "./KeywordData";
 
 export default function Dictionary() {
   const [keyword, setKeyword] = useState("");
+  const [loaded, setLoaded] = useState(false);
+
+  let form = (
+    <div style={{ height: "80%", width: "90%" }}>
+      <TextField
+        variant="filled"
+        className="search-bar"
+        placeholder={"Search for any word..."}
+        value={keyword}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            search();
+          }
+        }}
+        onChange={(event) => setKeyword(event.target.value)}
+        endAdornment={
+          <IconButton
+            style={{
+              color: "pink",
+              height: "30px",
+              width: "30px",
+            }}
+            onClick={search}
+          >
+            <SearchRounded />
+          </IconButton>
+        }
+        disableUnderline
+      />
+    </div>
+  );
 
   function displayKeywordData(response) {
+    setLoaded(true);
     console.log(response.data);
   }
 
@@ -19,37 +52,14 @@ export default function Dictionary() {
     axios.get(apiUrl).then(displayKeywordData);
   }
 
-  return (
-    <div className="search-container">
-      <div style={{ height: "80%", width: "90%" }}>
-        <TextField
-          variant="filled"
-          className="search-bar"
-          placeholder={"Search for any word..."}
-          value={keyword}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              search();
-            }
-          }}
-          onChange={(event) => setKeyword(event.target.value)}
-          InputProps={{
-            endAdornment: (
-              <IconButton
-                style={{
-                  color: "pink",
-                  height: "30px",
-                  width: "30px",
-                }}
-                onClick={search}
-              >
-                <SearchRounded />
-              </IconButton>
-            ),
-            disableUnderline: true,
-          }}
-        />
+  if (loaded) {
+    return (
+      <div className="search-container">
+        {form}
+        <KeywordData />
       </div>
-    </div>
-  );
+    );
+  } else {
+    return <div className="search-container">{form}</div>;
+  }
 }
