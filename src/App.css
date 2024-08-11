@@ -19,3 +19,11 @@ h2 {
   font-weight: 300;
   margin-top: 25px;
 }
+
+footer {
+  font-size: 13px;
+}
+
+footer a {
+  color: rgb(193, 102, 116);
+}

@@ -1,20 +1,29 @@
 import { SearchRounded } from "@mui/icons-material";
 import { IconButton, Input } from "@mui/material";
-import React from "react";
-import "./Search.css";
+import React, { useState } from "react";
+import "./Dictionary.css";
 
-export default function Search() {
+export default function Dictionary() {
+  const [keyword, setKeyword] = useState("");
+
+  function Search(event) {
+    event.preventDefault();
+    console.log(keyword);
+  }
+
   return (
     <div className="search-container">
       <div style={{ height: "80%", width: "90%" }}>
         <Input
-          className="input"
+          className="search-bar"
           disableUnderline
-          value={"Search for any word..."}
+          placeholder={"Search for any word..."}
+          value={keyword}
+          onChange={(event) => setKeyword(event.target.value)}
           endAdornment={
             <IconButton
-              label="Outlined"
               style={{ color: "pink", height: "30px", width: "30px" }}
+              onClick={Search}
             >
               <SearchRounded />
             </IconButton>
