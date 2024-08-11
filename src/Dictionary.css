@@ -7,9 +7,12 @@
 }
 
 .search-bar {
-  padding: 6px 10px;
-  border-radius: 10px;
   width: 100%;
-  color: #757575 !important;
-  background-color: #f4f4f4 !important;
+  & .MuiInputBase-input {
+    padding: 10px 10px;
+    color: grey;
+  }
+  & .MuiInputBase-root {
+    border-radius: 10px;
+  }
 }
