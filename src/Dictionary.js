@@ -1,5 +1,5 @@
 import { SearchRounded } from "@mui/icons-material";
-import { IconButton, Input, TextField } from "@mui/material";
+import { IconButton, TextField } from "@mui/material";
 import React, { useState } from "react";
 import "./Dictionary.css";
 import axios from "axios";
@@ -22,19 +22,21 @@ export default function Dictionary() {
           }
         }}
         onChange={(event) => setKeyword(event.target.value)}
-        endAdornment={
-          <IconButton
-            style={{
-              color: "pink",
-              height: "30px",
-              width: "30px",
-            }}
-            onClick={search}
-          >
-            <SearchRounded />
-          </IconButton>
-        }
-        disableUnderline
+        InputProps={{
+          endAdornment: (
+            <IconButton
+              style={{
+                color: "pink",
+                height: "30px",
+                width: "30px",
+              }}
+              onClick={search}
+            >
+              <SearchRounded />
+            </IconButton>
+          ),
+          disableUnderline: true,
+        }}
       />
     </div>
   );
