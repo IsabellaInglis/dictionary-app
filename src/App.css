@@ -10,7 +10,8 @@
   background-color: white;
   margin: 45px 45px;
   padding: 10px;
-  height: 100vh;
+  height: 100%;
+  border-radius: 5px;
 }
 
 h2 {
