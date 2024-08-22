@@ -8,9 +8,10 @@ import KeywordData from "./KeywordData";
 export default function Dictionary() {
   const [keyword, setKeyword] = useState("");
   const [loaded, setLoaded] = useState(false);
+  const [keywordData, setKeywordData] = useState({});
 
   let form = (
-    <div style={{ height: "80%", width: "90%" }}>
+    <div style={{ height: "80%", width: "95%" }}>
       <TextField
         variant="filled"
         className="search-bar"
@@ -43,7 +44,7 @@ export default function Dictionary() {
 
   function displayKeywordData(response) {
     setLoaded(true);
-    console.log(response.data);
+    setKeywordData(response.data);
   }
 
   function search(event) {
@@ -56,9 +57,11 @@ export default function Dictionary() {
 
   if (loaded) {
     return (
-      <div className="search-container">
-        {form}
-        <KeywordData />
+      <div className="Dictionary">
+        <div className="search-container">{form}</div>
+        <div className="results">
+          <KeywordData keywordData={keywordData} />
+        </div>
       </div>
     );
   } else {

@@ -10,11 +10,29 @@ function App() {
       </div>
       <footer>
         This project was coded by{" "}
-        <a href="https://github.com/IsabellaInglis">Isabella Inglis</a>,
-        open-sourced on{" "}
-        <a href="https://github.com/IsabellaInglis/dictionary-app">Github</a>{" "}
+        <a
+          href="https://github.com/IsabellaInglis"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Isabella Inglis
+        </a>
+        , open-sourced on{" "}
+        <a
+          href="https://github.com/IsabellaInglis/dictionary-app"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Github
+        </a>{" "}
         and hosted on{" "}
-        <a href="https://dictionary-search-react-app.netlify.app/">Netlify</a>
+        <a
+          href="https://dictionary-search-react-app.netlify.app/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Netlify
+        </a>
       </footer>
     </div>
   );
