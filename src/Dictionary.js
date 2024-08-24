@@ -3,12 +3,12 @@ import { IconButton, TextField } from "@mui/material";
 import React, { useState } from "react";
 import "./Dictionary.css";
 import axios from "axios";
-import KeywordData from "./KeywordData";
+import Results from "./Results";
 
 export default function Dictionary() {
   const [keyword, setKeyword] = useState("");
   const [loaded, setLoaded] = useState(false);
-  const [keywordData, setKeywordData] = useState({});
+  const [results, setResults] = useState({});
 
   let form = (
     <div style={{ height: "80%", width: "95%" }}>
@@ -42,9 +42,9 @@ export default function Dictionary() {
     </div>
   );
 
-  function displayKeywordData(response) {
+  function displayResults(response) {
     setLoaded(true);
-    setKeywordData(response.data);
+    setResults(response.data);
   }
 
   function search(event) {
@@ -52,7 +52,7 @@ export default function Dictionary() {
     let word = keyword;
     let apiUrl = `https://api.shecodes.io/dictionary/v1/define?word=${word}&key=${apiKey}`;
 
-    axios.get(apiUrl).then(displayKeywordData);
+    axios.get(apiUrl).then(displayResults);
   }
 
   if (loaded) {
@@ -60,7 +60,7 @@ export default function Dictionary() {
       <div className="Dictionary">
         <div className="search-container">{form}</div>
         <div className="results">
-          <KeywordData keywordData={keywordData} />
+          <Results results={results} />
         </div>
       </div>
     );
