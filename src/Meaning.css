@@ -1,0 +1,17 @@
+.example {
+  color: #888686;
+  padding-top: 5px;
+  font-size: 15px;
+}
+
+em {
+  font-weight: 200;
+}
+
+.meaning section {
+  padding-left: 20px;
+}
+
+.meaning .synonyms {
+  font-size: 16px;
+}

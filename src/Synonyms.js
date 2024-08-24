@@ -4,9 +4,13 @@ export default function Synonyms(props) {
   if (props.synonyms) {
     return (
       <div className="synonyms">
-        <em>Synonyms: </em>
+        <em>Similar: </em>
         {props.synonyms.map((synonym, index) => {
-          return <span key={index}>{synonym}, </span>;
+          if (index === props.synonyms.length - 1) {
+            return <span key={index}>{synonym} </span>;
+          } else {
+            return <span key={index}>{synonym}, </span>;
+          }
         })}
       </div>
     );

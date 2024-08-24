@@ -52,19 +52,32 @@ export default function Dictionary() {
     let word = keyword;
     let apiUrl = `https://api.shecodes.io/dictionary/v1/define?word=${word}&key=${apiKey}`;
 
-    axios.get(apiUrl).then(displayResults);
+    axios
+      .get(apiUrl)
+      .then(displayResults)
+      .catch((err) => console.error(err));
   }
 
   if (loaded) {
     return (
       <div className="Dictionary">
-        <div className="search-container">{form}</div>
+        <section>
+          <h2>What word do you want to look up?</h2>
+          <div className="search-container">{form}</div>
+        </section>
         <div className="results">
           <Results results={results} />
         </div>
       </div>
     );
   } else {
-    return <div className="search-container">{form}</div>;
+    return (
+      <div className="Dictionary">
+        <section>
+          <h2>What word do you want to look up?</h2>
+          <div className="search-container">{form}</div>
+        </section>
+      </div>
+    );
   }
 }
