@@ -4,11 +4,13 @@ import React, { useState } from "react";
 import "./Dictionary.css";
 import axios from "axios";
 import Results from "./Results";
+import Photos from "./Photos";
 
 export default function Dictionary() {
   const [keyword, setKeyword] = useState("");
   const [loaded, setLoaded] = useState(false);
   const [results, setResults] = useState({});
+  const [photos, setPhotos] = useState(null);
 
   let form = (
     <div style={{ height: "80%", width: "95%" }}>
@@ -47,26 +49,36 @@ export default function Dictionary() {
     setResults(response.data);
   }
 
+  function handlePhotosResponse(response) {
+    setPhotos(response.data.photos);
+  }
+
   function search(event) {
     let apiKey = "dc6760cf7088c245e5a42a646bco203t";
     let word = keyword;
-    let apiUrl = `https://api.shecodes.io/dictionary/v1/define?word=${word}&key=${apiKey}`;
+    let dictionaryApiUrl = `https://api.shecodes.io/dictionary/v1/define?word=${word}&key=${apiKey}`;
 
     axios
-      .get(apiUrl)
+      .get(dictionaryApiUrl)
       .then(displayResults)
       .catch((err) => console.error(err));
+
+    let imageApiUrl = `https://api.shecodes.io/images/v1/search?query=${word}&key=${apiKey}`;
+    axios.get(imageApiUrl).then(handlePhotosResponse);
   }
 
   if (loaded) {
     return (
       <div className="Dictionary">
-        <section>
+        <section className="first-section">
           <h2>What word do you want to look up?</h2>
           <div className="search-container">{form}</div>
         </section>
         <div className="results">
           <Results results={results} />
+          <section>
+            <Photos photos={photos} word={keyword} />
+          </section>
         </div>
       </div>
     );
